@@ -1,5 +1,6 @@
 # web-340
 Enterprise Javascript II
-#contributors
+
+# contributors
 Professor Krasso - Bellevue University
 Joshua Hughes - Bellevue University
