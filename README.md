@@ -1,2 +1,5 @@
 # web-340
-web 340 repo
+Enterprise Javascript II
+#contributors
+Professor Krasso - Bellevue University
+Joshua Hughes - Bellevue University
