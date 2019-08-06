@@ -1,5 +1,5 @@
 # web-340
-Enterprise Javascript II
+Node.js
 
 # contributors
 Professor Krasso - Bellevue University
