@@ -1,0 +1,9 @@
+{
+  "name": "hello-world",
+  "author": "Joshua Hughes",
+  "private": true,
+  "dependencies": {
+    "ejs": "^2.6.2",
+    "express": "^4.17.1"
+  }
+}

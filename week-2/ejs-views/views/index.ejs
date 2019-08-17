@@ -1,0 +1,41 @@
+<!-- /*
+============================================
+; Title:  index.ejs
+; Author: Joshua Hughes
+; Date:   16 August 2019
+; Description: EJS example view
+;===========================================
+*/
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EJS Views Example-Hughes</title>
+
+    <!-- Latest compiled and minified bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="col-sm-6 offset-sm-3 text-center">
+        <div class="card card-body">
+            <form role="form">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" class="form-control" id="firstName" disabled value='<%=firstName%>'>
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" class="form-control" id="lastName" disabled value='<%=lastName%>'>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <textarea class="form-control" id="address" disabled ><%=address%></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
