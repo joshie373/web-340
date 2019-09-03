@@ -2,7 +2,7 @@
 ============================================
 ; Title:  hughes-5.2.js
 ; Author: Joshua Hughes
-; Date:   22 August 2019
+; Date:   03 September 2019
 ; Description: demonstrates EJS if-else rendering
 ;===========================================
 */
