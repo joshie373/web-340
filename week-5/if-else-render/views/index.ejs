@@ -1,0 +1,27 @@
+<!-- /*
+============================================
+; Title:  index.ejs
+; Author: Joshua Hughes
+; Date:   03 September 2019
+; Description: if-else-rendering view
+;===========================================
+*/
+ -->
+ <div role="main" class="container">
+
+    <br/><br/>
+
+    <h2>Name List</h2>
+        <!-- if -->
+        <% if (names.length > 0) { %>
+            <!-- for loop -->
+            <% for (var k = 0; k < names.length; k++) { %>
+                <div class="alert alert-success" role="alert"><strong><%= names[k] %></strong></div>
+            <% } %>
+            <!-- end for loop -->
+        <% } %>
+        <!-- // end if -->
+
+   
+
+</div>

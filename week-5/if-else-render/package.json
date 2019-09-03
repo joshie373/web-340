@@ -1,0 +1,10 @@
+{
+    "name": "if-else-render",
+    "author": "Joshua Hughes",
+    "private": true,
+    "version": "0.0.3",
+    "dependencies": {
+        "ejs": "^2.7.1",
+        "express": "^4.17.1"
+    }
+}
