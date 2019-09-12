@@ -1,0 +1,11 @@
+{
+    "name": "mongoose-connection",
+    "author": "Joshua Hughes",
+    "private": true,
+    "version": "0.0.1",
+    "dependencies": {
+        "express": "^4.17.1",
+        "mongoose": "^5.7.0",
+        "morgan": "^1.9.1"
+    }
+}
