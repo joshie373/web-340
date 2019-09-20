@@ -23,16 +23,32 @@ var path = require("path");
 //requires morgan for logging
 var logger = require("morgan");
 
+
 //sets the logger to morgan
 app.use(logger("short"));
 
-//sets pug as the view Engine
+//sets ejs as the view Engine
 app.set("view engine", "ejs");
 
 //establishes directory for 'views'
 app.set("views", path.resolve(__dirname,"views"));
 
 app.use(express.static("images"));
+
+// ================milestone 3 =============
+//uses Mongoose as the db
+var mongoose = require("mongoose");
+
+//defines Schema
+var Schema = mongoose.Schema;
+
+//imports employee model
+var Employee = require("./models/employees");
+
+//sets mongo connection
+var mongoDB = "mongodb+srv://21216666:Kenneth37@buwebdev-cluster-1-z8vdl.mongodb.net/test?retryWrites=true&w=majority";
+
+// ============end milestone 3 =============
 
 //============End Dependencies==================================
 
@@ -45,6 +61,23 @@ app.get("/",function(request,response){
     })
 });
 
+//mongo connection
+mongoose.connect(mongoDB,{
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+});
+mongoose.Promise = global.Promise;
+var db = mongoose.connection;
+db.on("error", console.error.bind(console, "MongoDB connection Error: "));
+db.once("open",function(){
+    console.log("Application connected to mLab MongoDB instance");
+});
+
+//new Employee from model
+var employee = new Employee({
+    firstName: "Joshua",
+    lastName: "Hughes"
+});
 
 //starts application on port 8080
 http.createServer(app).listen(8080, function() {
