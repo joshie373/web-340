@@ -1,0 +1,13 @@
+{
+    "name": "chai-example",
+    "author": "Joshua Hughes",
+    "private": true,
+    "version": "0.0.1",
+    "dependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^6.2.0"
+    },
+    "scripts": {
+        "test": "mocha"
+    }
+}
