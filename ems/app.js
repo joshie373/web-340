@@ -99,7 +99,13 @@ var mongoDB = "mongodb+srv://21216666:Kenneth37@buwebdev-cluster-1-z8vdl.mongodb
 //handles home page
 app.get("/", function(request, response) {
     response.render("index", {
-        title: "Home",
+        title: "Home"
+    });
+});
+
+app.get("/new", function(request, response) {
+    response.render("New", {
+        title: "New",
         message: "New Employee Entry Page"
     });
 });
