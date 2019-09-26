@@ -23,9 +23,9 @@ var path = require("path");
 //requires morgan for logging
 var logger = require("morgan");
 
+//requires helmet
+var helmet = require("helmet");
 
-//sets the logger to morgan
-app.use(logger("short"));
 
 //sets ejs as the view Engine
 app.set("view engine", "ejs");
@@ -33,7 +33,14 @@ app.set("view engine", "ejs");
 //establishes directory for 'views'
 app.set("views", path.resolve(__dirname,"views"));
 
+//allows for the use of the images relative path
 app.use(express.static("images"));
+
+//sets the logger to morgan
+app.use(logger("short"));
+
+//adds helmet for xss filter
+app.use(helmet.xssFilter());
 
 // ================milestone 3 =============
 //uses Mongoose as the db
@@ -57,7 +64,8 @@ var mongoDB = "mongodb+srv://21216666:Kenneth37@buwebdev-cluster-1-z8vdl.mongodb
 //handles home page
 app.get("/",function(request,response){
     response.render("index",{
-        title: "Home page"
+        title: "Home page", 
+        message: "XSS Prevention Example"
     })
 });
 
