@@ -26,12 +26,27 @@ var logger = require("morgan");
 //requires helmet
 var helmet = require("helmet");
 
+//adds body parser for csrf
+var bodyParser = require("body-parser");
+
+//adds cookie parser for csrf
+var cookieParser = require("cookie-parser");
+
+//adds csrf
+var csrf = require("csurf");
+
+
+
 
 //sets ejs as the view Engine
 app.set("view engine", "ejs");
 
 //establishes directory for 'views'
 app.set("views", path.resolve(__dirname,"views"));
+
+
+
+
 
 //allows for the use of the images relative path
 app.use(express.static("images"));
@@ -41,6 +56,26 @@ app.use(logger("short"));
 
 //adds helmet for xss filter
 app.use(helmet.xssFilter());
+
+
+// setup csrf protection
+var csrfProtection = csrf({cookie: true});
+
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+
+app.use(cookieParser());
+
+app.use(csrfProtection);
+
+app.use(function(request, response, next) {
+    var token = request.csrfToken();
+    response.cookie('CSRF-TOKEN', token);
+    response.locals.csrfToken = token;
+    next();
+});
+
 
 // ================milestone 3 =============
 //uses Mongoose as the db
@@ -62,11 +97,16 @@ var mongoDB = "mongodb+srv://21216666:Kenneth37@buwebdev-cluster-1-z8vdl.mongodb
 //body of application
 
 //handles home page
-app.get("/",function(request,response){
-    response.render("index",{
-        title: "Home page", 
-        message: "XSS Prevention Example"
-    })
+app.get("/", function(request, response) {
+    response.render("index", {
+        title: "Home",
+        message: "New Employee Entry Page"
+    });
+});
+
+app.post("/process", function(request, response) {
+    console.log(request.body.txtName);
+    response.redirect("/");
 });
 
 //mongo connection
