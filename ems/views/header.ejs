@@ -16,12 +16,21 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <style>
-    .box-shad {
-    -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
-    -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
-    box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
-    border-color: black;
-    border-style: outset;
-}
+        .box-shad {
+            -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+            -moz-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+            box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
+            border-color: black;
+            border-style: outset;
+        }
+        .table-striped tbody > tr:nth-child(odd) > td,
+        .table-striped tbody > tr:nth-child(odd) > th{
+            background-color: rgba(241, 171, 67, 0.897);
+            color: black;
+        }
+        .table-striped tbody > tr:nth-child(even) > td,
+        .table-striped tbody > tr:nth-child(even) > th{
+            background-color: rgba(97, 97, 97, 0.575);
+        }
     </style>
 </head>

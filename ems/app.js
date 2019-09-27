@@ -88,7 +88,7 @@ var Schema = mongoose.Schema;
 var Employee = require("./models/employees");
 
 //sets mongo connection
-var mongoDB = "mongodb+srv://21216666:Kenneth37@buwebdev-cluster-1-z8vdl.mongodb.net/test?retryWrites=true&w=majority";
+var mongoDB = "mongodb+srv://21216666:Kenneth37@buwebdev-cluster-1-z8vdl.mongodb.net/ems?retryWrites=true&w=majority";
 
 // ============end milestone 3 =============
 
@@ -103,16 +103,55 @@ app.get("/", function(request, response) {
     });
 });
 
+//handles new page
 app.get("/new", function(request, response) {
     response.render("New", {
         title: "New",
-        message: "New Employee Entry Page"
+        message: "New Employee Entry Page", 
+        errorMessage : ""
+    });
+});
+
+//handles list page
+app.get("/list", function(request, response) {
+    Employee.find({}, function(error, employees) {
+       if (error) throw error;
+       response.render("list", {
+           title: "Employee List",
+           employees: employees
+       });
     });
 });
 
 app.post("/process", function(request, response) {
-    console.log(request.body.txtName);
-    response.redirect("/");
+    //console.log(request.body.txtName);
+    if((!request.body.txtFirstName) || (!request.body.txtLastName)){
+        //response.status(400).send("Entries must have a first and last name");
+        response.render("New", {
+            title: "New",
+            message: "New Employee Entry Page",
+            errorMessage: "Entries must have a first and last name"
+        });
+        return;
+    }
+
+    //get request's form data
+    var employeeName = request.body.txtFirstName + " " +request.body.txtLastName;
+    console.log(employeeName);
+
+    //create an employee model
+    //new Employee from model
+    var employee = new Employee({
+        firstName: request.body.txtFirstName,
+        lastName: request.body.txtLastName
+    });
+
+    //save
+    employee.save(function(error){
+        if(error) throw error;
+        console.log(employeeName + " saved successfully!");
+    });
+    response.redirect("/list");
 });
 
 //mongo connection
@@ -127,11 +166,6 @@ db.once("open",function(){
     console.log("Application connected to mLab MongoDB instance");
 });
 
-//new Employee from model
-var employee = new Employee({
-    firstName: "Joshua",
-    lastName: "Hughes"
-});
 
 //starts application on port 8080
 http.createServer(app).listen(8080, function() {
