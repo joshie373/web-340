@@ -157,14 +157,17 @@ app.get("/delete/:queryName", function (request, response) {
 //handles form submission
 app.post("/process", function(request, response) {
     //console.log(request.body.txtName);
-    if((!request.body.txtFirstName) || (!request.body.txtLastName)){
-        //response.status(400).send("Entries must have a first and last name");
-        response.render("new", {
-            title: "New",
-            message: "New Employee Entry Page",
-            errorMessage: "Entries must have a first and last name"
-        });
-        return;
+    Employee.find({}, function(error, employees) {
+        if((!request.body.txtFirstName) || (!request.body.txtLastName)){
+            //response.status(400).send("Entries must have a first and last name");
+            response.render("new", {
+                title: "New",
+                message: "New Employee Entry Page",
+                errorMessage: "Entries must have a first and last name",
+                employees: employees
+            });
+            return;
+        }
     }
 
     //get request's form data
