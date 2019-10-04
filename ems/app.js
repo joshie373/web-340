@@ -105,7 +105,7 @@ app.get("/", function(request, response) {
 //handles new page
 app.get("/new", function(request, response) {
     Employee.find({}, function(error, employees) {
-        response.render("New", {
+        response.render("new", {
             title: "New",
             message: "New Employee Entry Page", 
             errorMessage : "",
