@@ -163,12 +163,12 @@ app.post("/process", function(request, response) {
             response.render("new", {
                 title: "New",
                 message: "New Employee Entry Page",
-                errorMessage: "Entries must have a first and last name",
-                employees: employees
+                errorMessage: "Entries must have a first and last name"
             });
             return;
         }
-    }
+    });
+   
 
     //get request's form data
     var employeeName = request.body.txtEmployeeId + " " +request.body.txtFirstName + " " +request.body.txtLastName;
