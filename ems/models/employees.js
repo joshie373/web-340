@@ -13,6 +13,7 @@ const Schema = mongoose.Schema;
 
 //Employee Schema
 let employeeSchema  = new Schema({
+  employeeId: {type: Number, required: true },
   firstName: {type: String, required: true },
   lastName: {type: String, required: true }
 });

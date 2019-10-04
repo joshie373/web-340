@@ -15,6 +15,9 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+
     <style>
         .box-shad {
             -webkit-box-shadow: 7px 7px 5px 0px rgba(50, 50, 50, 0.75);
@@ -32,5 +35,27 @@
         .table-striped tbody > tr:nth-child(even) > th{
             background-color: rgba(97, 97, 97, 0.575);
         }
+
+        .table-striped tbody > tr:nth-child(odd) > td > a,
+        .table-striped tbody > tr:nth-child(odd) > th > a{
+            background-color:rgba(107, 106, 105, 0.712);
+            color: black !important;
+            position:relative;
+            margin-bottom:1rem;
+            border:1px solid transparent;
+            border-radius:.25rem;
+        }
+
+        .table-striped tbody > tr:nth-child(even) > td > a,
+        .table-striped tbody > tr:nth-child(even) > th > a{
+            background-color:rgba(218, 214, 210, 0.726);
+            color: white !important;
+            position:relative;
+            margin-bottom:1rem;
+            border:1px solid transparent;
+            border-radius:.25rem;
+        }
+
+
     </style>
 </head>

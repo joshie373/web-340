@@ -37,7 +37,6 @@ var csrf = require("csurf");
 
 
 
-
 //sets ejs as the view Engine
 app.set("view engine", "ejs");
 
@@ -105,10 +104,13 @@ app.get("/", function(request, response) {
 
 //handles new page
 app.get("/new", function(request, response) {
-    response.render("New", {
-        title: "New",
-        message: "New Employee Entry Page", 
-        errorMessage : ""
+    Employee.find({}, function(error, employees) {
+        response.render("New", {
+            title: "New",
+            message: "New Employee Entry Page", 
+            errorMessage : "",
+            employees: employees
+        });
     });
 });
 
@@ -123,6 +125,36 @@ app.get("/list", function(request, response) {
     });
 });
 
+//handles view link
+app.get("/view/:queryName", function (request, response) {
+    var queryName = request.params.queryName;
+    Employee.find({'employeeId': queryName}, function(error, employees) {
+        if (error) throw error;
+        console.log(employees);
+        if (employees.length > 0) {
+            response.render("view", {
+                title: "Employee Record",
+                employee: employees
+            })
+        }
+        else {
+            response.redirect("/list")
+        }
+    });
+});
+
+//handles delete link
+app.get("/delete/:queryName", function (request, response) {
+    var queryName = request.params.queryName;
+    Employee.deleteOne({'employeeId': queryName}, function(error) {
+        if (error) throw error;
+        else {
+            response.redirect("/list");
+        }
+    });
+});
+
+//handles form submission
 app.post("/process", function(request, response) {
     //console.log(request.body.txtName);
     if((!request.body.txtFirstName) || (!request.body.txtLastName)){
@@ -136,12 +168,13 @@ app.post("/process", function(request, response) {
     }
 
     //get request's form data
-    var employeeName = request.body.txtFirstName + " " +request.body.txtLastName;
+    var employeeName = request.body.txtEmployeeId + " " +request.body.txtFirstName + " " +request.body.txtLastName;
     console.log(employeeName);
 
     //create an employee model
     //new Employee from model
     var employee = new Employee({
+        employeeId: request.body.txtEmployeeId,
         firstName: request.body.txtFirstName,
         lastName: request.body.txtLastName
     });
